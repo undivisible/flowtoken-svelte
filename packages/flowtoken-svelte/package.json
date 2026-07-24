@@ -1,0 +1,48 @@
+{
+  "name": "flowtoken-svelte",
+  "version": "0.0.1",
+  "type": "module",
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "svelte": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./styles.css"
+  },
+  "files": [
+    "dist",
+    "styles.css",
+    "README.md"
+  ],
+  "homepage": "https://github.com/undivisible/flowtoken-svelte",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/undivisible/flowtoken-svelte.git",
+    "directory": "packages/flowtoken-svelte"
+  },
+  "scripts": {
+    "build": "svelte-package",
+    "check-types": "svelte-check --tsconfig ./tsconfig.json",
+    "lint": "bun run check-types"
+  },
+  "author": "Max Carter",
+  "license": "MIT",
+  "description": "FlowToken-style animated markdown streaming for Svelte 5, built on svelte-streamdown.",
+  "dependencies": {
+    "svelte-streamdown": "github:undivisible/svelte-streamdown"
+  },
+  "devDependencies": {
+    "@sveltejs/package": "^2.5.8",
+    "@sveltejs/vite-plugin-svelte": "^6.2.4",
+    "svelte": "^5.51.0",
+    "svelte-check": "^4.4.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.3"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  }
+}

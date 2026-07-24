@@ -1,0 +1,33 @@
+{
+  "name": "flowtoken-svelte-monorepo",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "postinstall": "node scripts/postinstall.mjs",
+    "build": "bun run --cwd packages/flowtoken-svelte build",
+    "build:example": "bun run build && bun run --cwd examples/async-agent build",
+    "dev:example": "bun run build && bun run --cwd examples/async-agent dev"
+  },
+  "packageManager": "bun@1.3.14",
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "Max Carter",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/undivisible/flowtoken-svelte.git"
+  },
+  "keywords": [
+    "svelte",
+    "markdown",
+    "streaming",
+    "animation",
+    "ai",
+    "flowtoken"
+  ]
+}

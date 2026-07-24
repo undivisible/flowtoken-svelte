@@ -1,0 +1,23 @@
+{
+  "name": "async-agent",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "flowtoken-svelte": "workspace:*",
+    "svelte-streamdown": "github:undivisible/svelte-streamdown"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^6.0.0",
+    "@sveltejs/kit": "^2.16.0",
+    "@sveltejs/vite-plugin-svelte": "^6.2.4",
+    "svelte": "^5.51.0",
+    "svelte-check": "^4.4.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.3"
+  }
+}

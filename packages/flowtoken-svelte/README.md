@@ -62,4 +62,4 @@ Import `flowtoken-svelte/styles.css` for keyframes. Pass custom animation names 
 
 ## License
 
-MIT
+ISC

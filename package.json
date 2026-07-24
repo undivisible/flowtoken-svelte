@@ -17,7 +17,7 @@
     "node": ">=18"
   },
   "author": "Max Carter",
-  "license": "MIT",
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/undivisible/flowtoken-svelte.git"

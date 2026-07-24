@@ -19,4 +19,4 @@ bun run --cwd examples/async-agent dev
 
 ## License
 
-MIT
+ISC

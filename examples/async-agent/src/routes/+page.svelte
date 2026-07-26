@@ -3,7 +3,7 @@
   import { AnimatedMarkdown } from "flowtoken-svelte";
 
   const description =
-    "Max Carter makes things for people—compilers, runtimes, operating systems, and native tools that make complicated systems feel direct. FlowToken Svelte is part of that work: a small text visualization library for turning live LLM output into something calm, readable, and continuous while it is still arriving.";
+    "Max Carter makes things for people—compilers, runtimes, operating systems, and native tools that make complicated systems feel direct. FlowToken Svelte is a Svelte port of Ephibbs’ original FlowToken: a small text visualization library for turning live LLM output into something calm, readable, and continuous while it is still arriving.";
   const tokens = description.match(/\S+\s*/g) ?? [];
 
   let content = $state("");

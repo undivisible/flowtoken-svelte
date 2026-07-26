@@ -3,8 +3,8 @@
   import { AnimatedMarkdown } from "flowtoken-svelte";
 
   const description =
-    "FlowToken is a text visualization library to animate and smooth streaming LLM token generation.";
-  const tokens = description.split(" ");
+    "FlowToken Svelte is a text visualization library to animate and smooth streaming LLM token generation.";
+  const tokens = description.match(/\S+\s*/g) ?? [];
 
   let content = $state("");
 
@@ -13,12 +13,12 @@
     let timer: ReturnType<typeof window.setTimeout>;
 
     const send = () => {
-      content = content ? `${content} ${tokens[index]}` : tokens[index];
+      content += tokens[index] ?? "";
       index += 1;
-      if (index < tokens.length) timer = window.setTimeout(send, 70);
+      if (index < tokens.length) timer = window.setTimeout(send, 32);
     };
 
-    timer = window.setTimeout(send, 70);
+    timer = window.setTimeout(send, 32);
 
     return () => window.clearTimeout(timer);
   });
@@ -46,32 +46,35 @@
 <style>
   main {
     align-items: center;
+    background: #000;
+    color: #fff;
     display: flex;
     justify-content: center;
     min-height: 100vh;
-    padding: 2rem;
   }
 
   section {
-    max-width: 40rem;
+    max-width: 640px;
+    padding: 2rem;
     width: 100%;
   }
 
   .stream {
-    font-size: 1rem;
+    font-size: 1.375rem;
     line-height: 1.5;
     margin: 0;
   }
 
   nav {
     display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    gap: 0.25rem;
+    margin-top: 1.5rem;
   }
 
   a {
     color: #9aa0a6;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
+    padding: 0.5rem;
     text-underline-offset: 0.2em;
   }
 

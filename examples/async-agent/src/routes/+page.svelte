@@ -11,57 +11,56 @@
   onMount(() => {
     let index = 0;
     let timer: ReturnType<typeof window.setTimeout>;
-    const delay = () => 1000 / 3 + Math.random() * 5;
 
     const send = () => {
-      if (index === tokens.length) {
-        timer = window.setTimeout(() => {
-          content = "";
-          index = 0;
-          timer = window.setTimeout(send, delay());
-        }, 1000);
-        return;
-      }
-
       content = content ? `${content} ${tokens[index]}` : tokens[index];
       index += 1;
-      timer = window.setTimeout(send, delay());
+      if (index < tokens.length) timer = window.setTimeout(send, 70);
     };
 
-    timer = window.setTimeout(send, delay());
+    timer = window.setTimeout(send, 70);
 
     return () => window.clearTimeout(timer);
   });
 </script>
 
 <main>
-  <p class="stream" aria-live="polite">
-    <AnimatedMarkdown
-      {content}
-      plain={true}
-      sep="word"
-      animation="fadeIn"
-      animationDuration="0.6s"
-      animationTimingFunction="ease-in-out"
-    />
-  </p>
-  <nav aria-label="Links">
-    <a href="https://github.com/undivisible/flowtoken-svelte">GitHub</a>
-    <a href="https://undivisible.dev">undivisible.dev</a>
-  </nav>
+  <section>
+    <p class="stream" aria-live="polite">
+      <AnimatedMarkdown
+        {content}
+        plain={true}
+        sep="word"
+        animation="fadeIn"
+        animationDuration="0.6s"
+        animationTimingFunction="ease-in-out"
+      />
+    </p>
+    <nav aria-label="Links">
+      <a href="https://github.com/undivisible/flowtoken-svelte">GitHub</a>
+      <a href="https://undivisible.dev">undivisible.dev</a>
+    </nav>
+  </section>
 </main>
 
 <style>
   main {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     min-height: 100vh;
     padding: 2rem;
+  }
+
+  section {
+    max-width: 40rem;
+    width: 100%;
   }
 
   .stream {
     font-size: 1rem;
     line-height: 1.5;
     margin: 0;
-    max-width: 40rem;
   }
 
   nav {

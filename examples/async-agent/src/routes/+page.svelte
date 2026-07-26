@@ -3,7 +3,7 @@
   import { AnimatedMarkdown } from "flowtoken-svelte";
 
   const description =
-    "FlowToken is a lightweight Svelte component for streaming AI and Markdown responses with graceful, token-by-token motion.";
+    "FlowToken brings gentle, token-by-token motion to streamed LLM text and Markdown in Svelte, making partial responses feel as deliberate as the finished thought.";
   const tokens = description.match(/\S+\s*/g) ?? [];
 
   let content = $state("");
@@ -26,7 +26,7 @@
       {content}
       plain={true}
       sep="diff"
-      animation="fadeAndScale"
+      animation="fadeIn"
       animationDuration="0.45s"
       animationTimingFunction="ease-in-out"
     />
@@ -46,24 +46,27 @@
     margin: 0 auto;
     min-height: 100vh;
     padding: 2rem;
+    background: #000;
+    color: #fff;
     text-align: center;
   }
 
   p {
-    font-size: clamp(1.5rem, 3vw, 2.35rem);
-    line-height: 1.25;
+    font-size: 1.5rem;
+    line-height: 1.35;
     margin: 0;
-    max-width: 42rem;
+    max-width: 620px;
   }
 
   nav {
     display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
   }
 
   a {
-    color: inherit;
+    color: #d0bcff;
+    padding: 0.5rem;
     text-underline-offset: 0.2em;
   }
 

@@ -3,31 +3,45 @@
   import { AnimatedMarkdown } from "flowtoken-svelte";
 
   const description =
-    "FlowToken brings gentle, token-by-token motion to streamed LLM text and Markdown in Svelte, making partial responses feel as deliberate as the finished thought.";
-  const tokens = description.match(/\S+\s*/g) ?? [];
+    "FlowToken is a text visualization library to animate and smooth streaming LLM token generation.";
+  const tokens = description.split(" ");
 
   let content = $state("");
 
   onMount(() => {
     let index = 0;
-    const timer = window.setInterval(() => {
-      content += tokens[index] ?? "";
-      index += 1;
-      if (index === tokens.length) window.clearInterval(timer);
-    }, 70);
+    let timer: ReturnType<typeof window.setTimeout>;
+    const delay = () => 1000 / 3 + Math.random() * 5;
 
-    return () => window.clearInterval(timer);
+    const send = () => {
+      if (index === tokens.length) {
+        timer = window.setTimeout(() => {
+          content = "";
+          index = 0;
+          timer = window.setTimeout(send, delay());
+        }, 1000);
+        return;
+      }
+
+      content = content ? `${content} ${tokens[index]}` : tokens[index];
+      index += 1;
+      timer = window.setTimeout(send, delay());
+    };
+
+    timer = window.setTimeout(send, delay());
+
+    return () => window.clearTimeout(timer);
   });
 </script>
 
 <main>
-  <p>
+  <p class="stream" aria-live="polite">
     <AnimatedMarkdown
       {content}
       plain={true}
-      sep="diff"
+      sep="word"
       animation="fadeIn"
-      animationDuration="0.45s"
+      animationDuration="0.6s"
       animationTimingFunction="ease-in-out"
     />
   </p>
@@ -39,34 +53,26 @@
 
 <style>
   main {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 auto;
     min-height: 100vh;
     padding: 2rem;
-    background: #000;
-    color: #fff;
-    text-align: center;
   }
 
-  p {
-    font-size: 1.5rem;
-    line-height: 1.35;
+  .stream {
+    font-size: 1rem;
+    line-height: 1.5;
     margin: 0;
-    max-width: 620px;
+    max-width: 40rem;
   }
 
   nav {
     display: flex;
     gap: 0.5rem;
-    margin-top: 1.75rem;
+    margin-top: 1rem;
   }
 
   a {
-    color: #d0bcff;
-    padding: 0.5rem;
+    color: #9aa0a6;
+    font-size: 0.75rem;
     text-underline-offset: 0.2em;
   }
 

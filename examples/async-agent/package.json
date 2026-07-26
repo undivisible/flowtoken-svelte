@@ -12,7 +12,7 @@
     "svelte-streamdown": "github:undivisible/svelte-streamdown"
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "^6.0.0",
+    "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/kit": "^2.16.0",
     "@sveltejs/vite-plugin-svelte": "^6.2.4",
     "svelte": "^5.51.0",

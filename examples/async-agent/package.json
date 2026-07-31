@@ -8,8 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "flowtoken-svelte": "workspace:*",
-    "svelte-streamdown": "github:undivisible/svelte-streamdown"
+    "@tschk/flowtoken-svelte": "workspace:*",
+    "@tschk/svelte-streamdown": "^0.0.1"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.10",

@@ -1,5 +1,5 @@
 {
-  "name": "flowtoken-svelte",
+  "name": "@tschk/flowtoken-svelte",
   "version": "0.0.2",
   "type": "module",
   "svelte": "./dist/index.js",
@@ -15,7 +15,9 @@
   "files": [
     "dist",
     "styles.css",
-    "README.md"
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "homepage": "https://github.com/undivisible/flowtoken-svelte",
   "repository": {
@@ -32,7 +34,7 @@
   "license": "ISC",
   "description": "FlowToken-style animated markdown streaming for Svelte 5, built on svelte-streamdown.",
   "dependencies": {
-    "svelte-streamdown": "github:undivisible/svelte-streamdown"
+    "@tschk/svelte-streamdown": "^0.0.1"
   },
   "devDependencies": {
     "@sveltejs/package": "^2.5.8",
@@ -44,5 +46,8 @@
   },
   "peerDependencies": {
     "svelte": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

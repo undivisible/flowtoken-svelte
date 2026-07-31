@@ -1,11 +1,11 @@
-# FlowToken Svelte
+# @tschk/flowtoken-svelte
 
 A Svelte 5 port of [FlowToken](https://github.com/Ephibbs/flowtoken) for animated LLM text streaming, built on [svelte-streamdown](https://github.com/undivisible/svelte-streamdown).
 
 ## Install
 
 ```bash
-npm install github:undivisible/flowtoken-svelte
+npm install @tschk/flowtoken-svelte
 ```
 
 Requires Svelte 5.
@@ -14,9 +14,9 @@ Requires Svelte 5.
 
 ```svelte
 <script>
-  import { AnimatedMarkdown } from "flowtoken-svelte";
-  import "flowtoken-svelte/styles.css";
-  import "svelte-streamdown/styles.css";
+  import { AnimatedMarkdown } from "@tschk/flowtoken-svelte";
+  import "@tschk/flowtoken-svelte/styles.css";
+  import "@tschk/svelte-streamdown/styles.css";
 
   let content = $state("## Hello, **world**!");
 </script>
@@ -58,7 +58,7 @@ Low-level token splitter with diff/word/char modes, ported from FlowToken's `Spl
 - `fadeAndScale`, `rotateIn`, `bounceIn`, `elastic`, `wave`
 - `typewriter`, `highlight`, `blurAndSharpen`, `colorTransition`
 
-Import `flowtoken-svelte/styles.css` for keyframes. Pass custom animation names for your own CSS keyframes.
+Import `@tschk/flowtoken-svelte/styles.css` for keyframes. Pass custom animation names for your own CSS keyframes.
 
 ## License
 

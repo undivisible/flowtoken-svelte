@@ -1,7 +1,7 @@
 <script lang="ts">
   import "../app.css";
-  import "flowtoken-svelte/styles.css";
-  import "svelte-streamdown/styles.css";
+  import "@tschk/flowtoken-svelte/styles.css";
+  import "@tschk/svelte-streamdown/styles.css";
 
   let { children } = $props();
 </script>

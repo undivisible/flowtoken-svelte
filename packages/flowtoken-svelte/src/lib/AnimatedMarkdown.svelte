@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Streamdown } from "svelte-streamdown";
+  import { Streamdown } from "@tschk/svelte-streamdown";
   import TokenizedText from "./TokenizedText.svelte";
   import { mapStreamdownAnimation } from "./animations";
 

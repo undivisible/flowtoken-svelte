@@ -21,9 +21,7 @@ export function resolveAnimationName(name: string): string {
   return animations[name as FlowTokenAnimation] ?? name;
 }
 
-export function mapStreamdownAnimation(
-  name: string,
-): boolean | "blur" | "slide-up" | "slide-down" {
+export function mapStreamdownAnimation(name: string): boolean | "blur" | "slide-up" | "slide-down" {
   switch (name) {
     case "fadeIn":
     case "fadeAndScale":

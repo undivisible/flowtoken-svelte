@@ -19,6 +19,9 @@
     "LICENSE",
     "CHANGELOG.md"
   ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "homepage": "https://github.com/undivisible/flowtoken-svelte",
   "repository": {
     "type": "git",
@@ -28,7 +31,9 @@
   "scripts": {
     "build": "svelte-package",
     "check-types": "svelte-check --tsconfig ./tsconfig.json",
-    "lint": "bun run check-types"
+    "lint": "bun run check-types",
+    "test": "bun test",
+    "prepublishOnly": "bun run check-types && bun run build"
   },
   "author": "Max Carter",
   "license": "ISC",

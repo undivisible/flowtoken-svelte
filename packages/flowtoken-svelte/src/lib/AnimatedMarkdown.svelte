@@ -2,15 +2,16 @@
   import { Streamdown } from "@tschk/svelte-streamdown";
   import TokenizedText from "./TokenizedText.svelte";
   import { mapStreamdownAnimation } from "./animations";
-
-  type Sep = "diff" | "word" | "char";
+  import type { FlowTokenAnimation } from "./animations";
+  import type { Sep } from "./tokenize";
 
   interface Props {
     content: string;
     sep?: Sep;
-    animation?: string | null;
+    animation?: FlowTokenAnimation | string | null;
     animationDuration?: string;
     animationTimingFunction?: string;
+    animationIterationCount?: string;
     plain?: boolean;
     streaming?: boolean;
   }
@@ -21,13 +22,12 @@
     animation = "fadeIn",
     animationDuration = "0.45s",
     animationTimingFunction = "ease-in-out",
+    animationIterationCount = "1",
     plain = false,
     streaming = true,
   }: Props = $props();
 
-  const streamdownAnimated = $derived(
-    animation ? mapStreamdownAnimation(animation) : false,
-  );
+  const streamdownAnimated = $derived(animation ? mapStreamdownAnimation(animation) : false);
   const mode = $derived(streaming ? "streaming" : "static");
 </script>
 
@@ -38,6 +38,7 @@
     {animation}
     {animationDuration}
     {animationTimingFunction}
+    {animationIterationCount}
   />
 {:else if animation === null}
   <Streamdown markdown={content} mode="static" />

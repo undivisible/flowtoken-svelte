@@ -5,10 +5,10 @@ A Svelte 5 port of [FlowToken](https://github.com/Ephibbs/flowtoken) for animate
 ## Install
 
 ```bash
-npm install @tschk/flowtoken-svelte
+bun add @tschk/flowtoken-svelte
 ```
 
-Requires Svelte 5.
+Also works with `npm` / `pnpm` / `yarn`. Requires Svelte 5.
 
 ## Usage
 
@@ -36,17 +36,20 @@ Requires Svelte 5.
 
 Renders markdown with FlowToken-style animations during streaming.
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `content` | `string` | — | Markdown content |
-| `sep` | `"diff" \| "word" \| "char"` | `"diff"` | Token split mode (for plain mode) |
-| `animation` | `string \| null` | `"fadeIn"` | Animation name, or `null` for static |
-| `animationDuration` | `string` | `"0.45s"` | CSS animation duration |
-| `animationTimingFunction` | `string` | `"ease-in-out"` | CSS timing function |
-| `plain` | `boolean` | `false` | Use token-level `TokenizedText` instead of markdown |
-| `streaming` | `boolean` | `true` | Use Streamdown streaming mode |
+| Prop                      | Type                         | Default         | Description                                         |
+| ------------------------- | ---------------------------- | --------------- | --------------------------------------------------- |
+| `content`                 | `string`                     | —               | Markdown content                                    |
+| `sep`                     | `"diff" \| "word" \| "char"` | `"diff"`        | Token split mode (plain mode only)                  |
+| `animation`               | `string \| null`             | `"fadeIn"`      | Animation name, or `null` for static                |
+| `animationDuration`       | `string`                     | `"0.45s"`       | CSS animation duration (plain mode)                 |
+| `animationTimingFunction` | `string`                     | `"ease-in-out"` | CSS timing function (plain mode)                    |
+| `animationIterationCount` | `string`                     | `"1"`           | CSS iteration count (plain mode)                    |
+| `plain`                   | `boolean`                    | `false`         | Use token-level `TokenizedText` instead of markdown |
+| `streaming`               | `boolean`                    | `true`          | Use Streamdown streaming mode                       |
 
-When `animation` is `null`, renders static markdown via Streamdown. When animating, Streamdown handles block-level animations; set `plain={true}` for character/word/diff token animations on plain text.
+When `animation` is `null`, renders static markdown via Streamdown. In markdown mode, Streamdown maps FlowToken names to its built-in animation variants (`true` / `blur` / `slide-up` / `slide-down`). Set `plain={true}` for character/word/diff token animations that use the full FlowToken CSS keyframes, including duration/timing/iteration props.
+
+For untrusted LLM markdown, do not enable Streamdown Mermaid (`mermaid` peer) without strict Mermaid security settings upstream — that path uses `{@html}` with a loose security level.
 
 ### `TokenizedText`
 

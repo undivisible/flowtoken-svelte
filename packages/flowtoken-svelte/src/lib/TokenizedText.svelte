@@ -1,17 +1,13 @@
 <script lang="ts">
+  import { untrack } from "svelte";
   import { resolveAnimationName } from "./animations";
-
-  type Sep = "diff" | "word" | "char";
-
-  interface TokenWithSource {
-    text: string;
-    source: number;
-  }
+  import type { FlowTokenAnimation } from "./animations";
+  import { createDiffState, nextDiffState, splitPlainTokens, type Sep } from "./tokenize";
 
   interface Props {
     input: string;
     sep?: Sep;
-    animation?: string | null;
+    animation?: FlowTokenAnimation | string | null;
     animationDuration?: string;
     animationTimingFunction?: string;
     animationIterationCount?: string;
@@ -26,54 +22,34 @@
     animationIterationCount = "1",
   }: Props = $props();
 
-  let prevInput = $state("");
-  let diffTokens = $state<TokenWithSource[]>([]);
-  let fullText = $state("");
+  let diffState = $state.raw(createDiffState());
 
   $effect(() => {
-    if (sep !== "diff") return;
-
-    if (!prevInput || input.length < prevInput.length) {
-      diffTokens = [];
-      fullText = "";
-    }
-
-    if (input !== prevInput) {
-      if (input.includes(fullText)) {
-        const uniqueNewContent = input.slice(fullText.length);
-        if (uniqueNewContent.length > 0) {
-          diffTokens = [
-            ...diffTokens,
-            { text: uniqueNewContent, source: diffTokens.length },
-          ];
-          fullText = input;
+    if (sep !== "diff") {
+      untrack(() => {
+        if (diffState.prevInput || diffState.tokens.length > 0) {
+          diffState = createDiffState();
         }
-      } else {
-        diffTokens = [{ text: input, source: 0 }];
-        fullText = input;
-      }
+      });
+      return;
     }
 
-    prevInput = input;
+    const next = untrack(() => nextDiffState(diffState, input));
+    if (next !== diffState) {
+      diffState = next;
+    }
   });
 
-  const splitTokens = $derived.by(() => {
-    if (sep === "word") {
-      return input.split(/(\s+)/).filter((token) => token.length > 0);
-    }
-    if (sep === "char") {
-      return input.split(/(.)/).filter((token) => token.length > 0);
-    }
-    return [] as string[];
+  const plainTokens = $derived.by(() => {
+    if (sep === "diff") return [] as string[];
+    return splitPlainTokens(input, sep);
   });
 
-  const animationName = $derived(
-    animation ? resolveAnimationName(animation) : undefined,
-  );
+  const animationName = $derived(animation ? resolveAnimationName(animation) : undefined);
 </script>
 
 {#if sep === "diff"}
-  {#each diffTokens as token (token.source)}
+  {#each diffState.tokens as token (token.source)}
     <span
       style:animation-name={animationName}
       style:animation-duration={animationDuration}
@@ -86,7 +62,7 @@
     </span>
   {/each}
 {:else}
-  {#each splitTokens as token, index (index)}
+  {#each plainTokens as token, index (index)}
     <span
       style:animation-name={animationName}
       style:animation-duration={animationDuration}

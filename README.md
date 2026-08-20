@@ -6,10 +6,10 @@ Try the interactive demo at [flowtoken-svelte.undivisible.dev](https://flowtoken
 
 ## Packages
 
-| Path | Description |
-| --- | --- |
+| Path                        | Description                                   |
+| --------------------------- | --------------------------------------------- |
 | `packages/flowtoken-svelte` | Animated markdown + tokenized text components |
-| `examples/async-agent` | SvelteKit chat demo with simulated streaming agent |
+| `examples/async-agent`      | SvelteKit demo with simulated streaming text  |
 
 ## Development
 

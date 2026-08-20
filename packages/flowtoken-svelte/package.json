@@ -28,8 +28,13 @@
   "scripts": {
     "build": "svelte-package",
     "check-types": "svelte-check --tsconfig ./tsconfig.json",
-    "lint": "bun run check-types"
+    "lint": "bun run check-types",
+    "test": "bun test",
+    "prepublishOnly": "bun run check-types && bun run build"
   },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "author": "Max Carter",
   "license": "ISC",
   "description": "FlowToken-style animated markdown streaming for Svelte 5, built on svelte-streamdown.",

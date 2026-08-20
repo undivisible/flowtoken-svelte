@@ -10,9 +10,11 @@
 
   onMount(() => {
     let index = 0;
+    let cancelled = false;
     let timer: ReturnType<typeof window.setTimeout>;
 
     const send = () => {
+      if (cancelled) return;
       content += tokens[index] ?? "";
       index += 1;
       if (index < tokens.length) timer = window.setTimeout(send, 32);
@@ -20,7 +22,10 @@
 
     timer = window.setTimeout(send, 32);
 
-    return () => window.clearTimeout(timer);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
   });
 </script>
 

@@ -9,7 +9,19 @@
   "scripts": {
     "build": "bun run --cwd packages/flowtoken-svelte build",
     "build:example": "bun run build && bun run --cwd examples/async-agent build",
-    "dev:example": "bun run build && bun run --cwd examples/async-agent dev"
+    "dev:example": "bun run build && bun run --cwd examples/async-agent dev",
+    "check": "bun run --cwd packages/flowtoken-svelte check-types && bun run build && bun run --cwd examples/async-agent check",
+    "lint": "bun run --cwd packages/flowtoken-svelte check-types",
+    "test": "bun test packages/flowtoken-svelte",
+    "format": "prettier --check ."
+  },
+  "overrides": {
+    "nanoid": "^3.3.17",
+    "cookie": "^0.7.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "prettier-plugin-svelte": "^3.4.0"
   },
   "packageManager": "bun@1.3.14",
   "engines": {
